@@ -24,11 +24,11 @@ router.get('/', function(req, res) {
     res.json({ message: 'This service generates random ORC names using the data from http://www.heresy-online.net/forums/general-40k/74487-ork-warboss-name-generator.html!' });   
 });
 
-router.get('/name', function(req, res) {
+router.get('/api/name', function(req, res) {
     res.json({ name: nameGenerator.getORCName(), thanksTo : 'http://www.heresy-online.net/forums/general-40k/74487-ork-warboss-name-generator.html' });   
 });
 
-router.get('/names', function(req, res) {
+router.get('/api/names', function(req, res) {
     var amount = req.query.amount || 1;
     var names = nameGenerator.getORCNames( amount );
     res.json({ names: names, thanksTo : 'http://www.heresy-online.net/forums/general-40k/74487-ork-warboss-name-generator.html' });   
@@ -38,7 +38,7 @@ router.get('/names', function(req, res) {
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/api', router);
+app.use('/', router);
 
 // START THE SERVER
 // =============================================================================

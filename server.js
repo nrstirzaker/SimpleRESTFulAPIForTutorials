@@ -21,17 +21,17 @@ var router = express.Router();              // get an instance of the express Ro
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+    res.json({ message: 'This service generates random ORC names using the data from http://www.heresy-online.net/forums/general-40k/74487-ork-warboss-name-generator.html!' });   
 });
 
 router.get('/name', function(req, res) {
-    res.json({ name: nameGenerator.getORCName() });   
+    res.json({ name: nameGenerator.getORCName(), thanksTo : 'http://www.heresy-online.net/forums/general-40k/74487-ork-warboss-name-generator.html' });   
 });
 
 router.get('/names', function(req, res) {
     var amount = req.query.amount || 1;
     var names = nameGenerator.getORCNames( amount );
-    res.json({ names: names });   
+    res.json({ names: names, thanksTo : 'http://www.heresy-online.net/forums/general-40k/74487-ork-warboss-name-generator.html' });   
 });
 
 // more routes for our API will happen here

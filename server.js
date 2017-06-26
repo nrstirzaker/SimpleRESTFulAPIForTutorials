@@ -6,6 +6,7 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
+var nameGenerator = require('./nameGenerator.js');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -21,6 +22,16 @@ var router = express.Router();              // get an instance of the express Ro
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
+});
+
+router.get('/name', function(req, res) {
+    res.json({ name: nameGenerator.getORCName() });   
+});
+
+router.get('/names', function(req, res) {
+    var amount = req.query.amount || 1;
+    var names = nameGenerator.getORCNames( amount );
+    res.json({ names: names });   
 });
 
 // more routes for our API will happen here

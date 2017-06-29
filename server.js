@@ -7,9 +7,10 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var nameGenerator = require('./nameGenerator.js');
-
+var cors = require('cors');
 // configure app to use bodyParser()
 // this will let us get the data from a POST
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -21,7 +22,7 @@ var router = express.Router();              // get an instance of the express Ro
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.json({ message: 'This service generates random ORC names using the data from http://www.heresy-online.net/forums/general-40k/74487-ork-warboss-name-generator.html!' });   
+    res.json({ message: 'This service generates random ORC names using the data from http://www.heresy-online.net/forums/general-40k/74487-ork-warboss-name-generator.html' });   
 });
 
 router.get('/api/name', function(req, res) {
